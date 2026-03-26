@@ -26,11 +26,8 @@
   --sans:       'Noto Sans SC', sans-serif;
   --mono:       'JetBrains Mono', monospace;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   font-family: var(--sans);
   background: var(--paper);
@@ -38,8 +35,6 @@ body {
   line-height: 1.75;
   font-size: 15px;
 }
-
-/* ── SIDEBAR ─────────────────────────── */
 #sidebar {
   position: fixed;
   top: 0; left: 0;
@@ -52,10 +47,8 @@ body {
   flex-direction: column;
   padding-bottom: 32px;
 }
-
 #sidebar::-webkit-scrollbar { width: 4px; }
 #sidebar::-webkit-scrollbar-thumb { background: #ffffff22; border-radius: 2px; }
-
 .sidebar-brand {
   padding: 28px 24px 20px;
   border-bottom: 1px solid #ffffff18;
@@ -84,10 +77,7 @@ body {
   color: #ffffff66;
   margin-top: 4px;
 }
-
-.nav-section {
-  padding: 16px 0 0;
-}
+.nav-section { padding: 16px 0 0; }
 .nav-label {
   font-size: 10px;
   letter-spacing: 0.12em;
@@ -121,7 +111,6 @@ body {
   min-width: 18px;
 }
 .nav-item.active .nav-num { opacity: 1; }
-
 .nav-sub {
   padding: 5px 24px 5px 56px;
   color: #ffffff55;
@@ -131,14 +120,10 @@ body {
   transition: color 0.15s;
 }
 .nav-sub:hover { color: #ffffffaa; }
-
-/* ── MAIN CONTENT ───────────────────── */
 #main {
   margin-left: var(--sidebar-w);
   min-height: 100vh;
 }
-
-/* HERO */
 .hero {
   background: linear-gradient(135deg, var(--ink) 0%, #1a3044 50%, #0d2030 100%);
   padding: 80px 64px 72px;
@@ -217,14 +202,10 @@ body {
   font-size: 14px;
   color: #ffffffcc;
 }
-
-/* CONTENT AREA */
 .content {
   padding: 0 64px 80px;
   max-width: 960px;
 }
-
-/* SECTIONS */
 .chapter {
   padding-top: 72px;
   border-top: 1px solid var(--rule);
@@ -232,12 +213,10 @@ body {
   animation: fadeUp 0.4s ease both;
 }
 .chapter:first-child { border-top: none; }
-
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 .chapter-header {
   display: flex;
   align-items: baseline;
@@ -281,11 +260,8 @@ body {
   height: 1px;
   background: var(--teal-light);
 }
-
 p { margin-bottom: 14px; color: var(--ink-mid); }
 p:last-child { margin-bottom: 0; }
-
-/* ── TABLES ─────────────────────────── */
 .tbl-wrap {
   overflow-x: auto;
   margin: 20px 0 28px;
@@ -319,7 +295,6 @@ tbody td {
   line-height: 1.65;
 }
 tbody tr:last-child td { border-bottom: none; }
-
 .sub-header-row td {
   background: var(--teal) !important;
   color: #fff !important;
@@ -328,7 +303,6 @@ tbody tr:last-child td { border-bottom: none; }
   letter-spacing: 0.05em;
   padding: 7px 14px;
 }
-
 .badge {
   display: inline-block;
   padding: 2px 8px;
@@ -340,10 +314,7 @@ tbody tr:last-child td { border-bottom: none; }
 .badge-free { background: #e8f5ee; color: var(--green); }
 .badge-paid { background: #fdecea; color: var(--red); }
 .badge-both { background: #fff3e0; color: #b45309; }
-
 .star-rating { color: var(--gold); font-size: 12px; letter-spacing: -1px; }
-
-/* ── CALLOUT BOXES ───────────────────── */
 .callout {
   border-radius: 8px;
   padding: 20px 24px;
@@ -377,8 +348,6 @@ tbody tr:last-child td { border-bottom: none; }
   margin-bottom: 4px;
 }
 .callout ul { padding-left: 18px; }
-
-/* ── PROMPT BOX ─────────────────────── */
 .prompt-box {
   background: #0f1923;
   border-radius: 8px;
@@ -431,8 +400,6 @@ tbody tr:last-child td { border-bottom: none; }
 .prompt-content .c-comment { color: #5a7a6a; }
 .prompt-content .c-label { color: var(--gold-light); font-weight: 500; }
 .prompt-content .c-placeholder { color: #7dc0e8; font-style: italic; }
-
-/* ── STEP LIST ───────────────────────── */
 .steps { list-style: none; margin: 16px 0 24px; }
 .steps li {
   display: flex;
@@ -455,8 +422,6 @@ tbody tr:last-child td { border-bottom: none; }
 .step-body { flex: 1; }
 .step-body strong { color: var(--ink); display: block; margin-bottom: 4px; }
 .step-body p { margin: 0; font-size: 13.5px; }
-
-/* ── COMPARISON TABLE ───────────────── */
 .compare-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -492,8 +457,6 @@ tbody tr:last-child td { border-bottom: none; }
   left: 4px;
   color: var(--ink-soft);
 }
-
-/* ── TOOL CARD GRID ─────────────────── */
 .tool-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -540,8 +503,6 @@ tbody tr:last-child td { border-bottom: none; }
   color: var(--teal);
   font-family: var(--mono);
 }
-
-/* ── EFFICIENCY STATS ───────────────── */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -576,8 +537,6 @@ tbody tr:last-child td { border-bottom: none; }
   color: #ffffffaa;
   line-height: 1.4;
 }
-
-/* ── TIMELINE ───────────────────────── */
 .timeline { margin: 20px 0; position: relative; padding-left: 32px; }
 .timeline::before {
   content: '';
@@ -615,8 +574,6 @@ tbody tr:last-child td { border-bottom: none; }
 .tl-body { font-size: 13.5px; color: var(--ink-mid); }
 .tl-body li { margin-bottom: 4px; padding-left: 14px; position: relative; }
 .tl-body li::before { content: '›'; position: absolute; left: 0; color: var(--gold); }
-
-/* ── BREADCRUMB / PROGRESS ───────────── */
 .page-progress {
   position: fixed;
   top: 0; left: var(--sidebar-w); right: 0;
@@ -630,8 +587,6 @@ tbody tr:last-child td { border-bottom: none; }
   transition: width 0.1s;
   width: 0%;
 }
-
-/* ── APPENDIX TABLE ─────────────────── */
 .app-url {
   font-family: var(--mono);
   font-size: 11.5px;
@@ -639,8 +594,6 @@ tbody tr:last-child td { border-bottom: none; }
   text-decoration: none;
 }
 .app-url:hover { text-decoration: underline; }
-
-/* ── BACK TO TOP ─────────────────────── */
 #back-top {
   position: fixed;
   bottom: 32px; right: 32px;
@@ -660,8 +613,6 @@ tbody tr:last-child td { border-bottom: none; }
 }
 #back-top.show { opacity: 1; transform: translateY(0); }
 #back-top:hover { background: var(--teal); }
-
-/* ── RESPONSIVE ─────────────────────── */
 @media (max-width: 900px) {
   #sidebar { transform: translateX(-100%); transition: transform 0.3s; }
   #sidebar.open { transform: none; }
@@ -672,7 +623,6 @@ tbody tr:last-child td { border-bottom: none; }
   #menu-btn { display: flex !important; }
   .compare-grid { grid-template-columns: 1fr; }
 }
-
 #menu-btn {
   display: none;
   position: fixed;
@@ -690,118 +640,51 @@ tbody tr:last-child td { border-bottom: none; }
 </style>
 </head>
 <body>
-
-<!-- Progress Bar -->
 <div class="page-progress"><div class="page-progress-bar" id="progress-bar"></div></div>
-
-<!-- Mobile Menu Button -->
-<button id="menu-btn" onclick="toggleSidebar()">☰</button>
-
-<!-- SIDEBAR -->
+<button id="menu-btn">☰</button>
 <nav id="sidebar">
   <div class="sidebar-brand">
     <div class="logo-tag">Training Manual · 2025</div>
     <h1>购物中心<br>AI工具培训手册</h1>
     <div class="sub">店总版 · 实战指南</div>
   </div>
-
   <div class="nav-section">
     <div class="nav-label">目录</div>
-    <a class="nav-item active" onclick="scrollTo('s0')">
-      <span class="nav-num">00</span>前言与背景
-    </a>
-    <a class="nav-item" onclick="scrollTo('s1')">
-      <span class="nav-num">01</span>为什么必须用AI
-    </a>
-    <a class="nav-sub" onclick="scrollTo('s1a')">效率对比数据</a>
-    <a class="nav-sub" onclick="scrollTo('s1b')">四大业务价值</a>
-    <a class="nav-item" onclick="scrollTo('s2')">
-      <span class="nav-num">02</span>AI工具全景图
-    </a>
-    <a class="nav-sub" onclick="scrollTo('s2a')">五大类工具</a>
-    <a class="nav-sub" onclick="scrollTo('s2b')">选型原则</a>
-    <a class="nav-item" onclick="scrollTo('s3')">
-      <span class="nav-num">03</span>提示词写作指南
-    </a>
-    <a class="nav-sub" onclick="scrollTo('s3a')">万能公式</a>
-    <a class="nav-sub" onclick="scrollTo('s3b')">文字类模板库</a>
-    <a class="nav-sub" onclick="scrollTo('s3c')">图片类模板库</a>
-    <a class="nav-sub" onclick="scrollTo('s3d')">视频类模板库</a>
-    <a class="nav-item" onclick="scrollTo('s4')">
-      <span class="nav-num">04</span>工具操作SOP
-    </a>
-    <a class="nav-sub" onclick="scrollTo('s4a')">豆包/DeepSeek</a>
-    <a class="nav-sub" onclick="scrollTo('s4b')">KIMI+即梦AI</a>
-    <a class="nav-sub" onclick="scrollTo('s4c')">可灵AI</a>
-    <a class="nav-sub" onclick="scrollTo('s4d')">小云雀</a>
-    <a class="nav-item" onclick="scrollTo('s5')">
-      <span class="nav-num">05</span>业务场景实战案例
-    </a>
-    <a class="nav-sub" onclick="scrollTo('s5a')">案例一：生成海报</a>
-    <a class="nav-sub" onclick="scrollTo('s5b')">案例二：生成推文</a>
-    <a class="nav-sub" onclick="scrollTo('s5c')">案例三：生成视频</a>
-    <a class="nav-item" onclick="scrollTo('s6')">
-      <span class="nav-num">06</span>团队落地三步走
-    </a>
-    <a class="nav-item" onclick="scrollTo('s7')">
-      <span class="nav-num">附录</span>工具速查表
-    </a>
+    <a class="nav-item active" href="#s0"><span class="nav-num">00</span>前言与背景</a>
+    <a class="nav-item" href="#s1"><span class="nav-num">01</span>为什么必须用AI</a>
+    <a class="nav-item" href="#s2"><span class="nav-num">02</span>AI工具全景图</a>
+    <a class="nav-item" href="#s3"><span class="nav-num">03</span>提示词写作指南</a>
+    <a class="nav-item" href="#s4"><span class="nav-num">04</span>工具操作SOP</a>
+    <a class="nav-item" href="#s5"><span class="nav-num">05</span>业务场景实战案例</a>
+    <a class="nav-item" href="#s6"><span class="nav-num">06</span>团队落地三步走</a>
+    <a class="nav-item" href="#s7"><span class="nav-num">附录</span>工具速查表</a>
   </div>
 </nav>
-
-<!-- MAIN -->
 <main id="main">
-
-<!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">购物中心 AI 工具培训手册</div>
   <h1>让AI成为你的<em>超级助理</em></h1>
   <p class="tagline">从写报告、做海报到剪视频——把重复劳动交给AI，把精力留给招商谈判、商户关系和顾客体验。</p>
   <div class="hero-meta">
-    <div class="hero-meta-item">
-      <span class="label">适用对象</span>
-      <span class="val">购物中心项目总 · 运营总监 · 各部门主管</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="label">使用基础</span>
-      <span class="val">零基础友好 · 手把手指引</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="label">版本</span>
-      <span class="val">2025年版</span>
-    </div>
+    <div class="hero-meta-item"><span class="label">适用对象</span><span class="val">购物中心项目总 · 运营总监 · 各部门主管</span></div>
+    <div class="hero-meta-item"><span class="label">使用基础</span><span class="val">零基础友好 · 手把手指引</span></div>
+    <div class="hero-meta-item"><span class="label">版本</span><span class="val">2025年版</span></div>
   </div>
 </section>
-
 <div class="content">
-
-<!-- ─── CHAPTER 0 ──────────────────── -->
 <section class="chapter" id="s0">
-  <div class="chapter-header">
-    <span class="chapter-num">00</span>
-    <h2>前言：AI工具是什么？能做什么？</h2>
-  </div>
+  <div class="chapter-header"><span class="chapter-num">00</span><h2>前言：AI工具是什么？能做什么？</h2></div>
   <p>AI工具，简单来说就是一类能理解你的文字指令、帮你完成任务的软件。你告诉它"帮我写一份催租通知"，它几秒内给你一份专业函件；你上传几张照片，它自动生成一条短视频。</p>
   <p>当前主流AI工具按功能分为五大类：<strong>文本处理、图像生成、视频生成、音频处理、代码开发</strong>。对于购物中心管理团队而言，前三类是最高频的应用场景，也是本手册的重点。</p>
-
   <div class="callout callout-info">
     <div class="callout-title">💡 一个关键认知</div>
     <p>AI不是替代你的工具，而是你的24小时不疲倦的助手。它擅长处理重复性、模板化的工作；你负责判断、决策和人际关系。两者结合，才是最高效的工作方式。</p>
   </div>
 </section>
-
-<!-- ─── CHAPTER 1 ──────────────────── -->
 <section class="chapter" id="s1">
-  <div class="chapter-header">
-    <span class="chapter-num">01</span>
-    <h2>为什么购物中心管理者必须拥抱AI？</h2>
-  </div>
-
+  <div class="chapter-header"><span class="chapter-num">01</span><h2>为什么购物中心管理者必须拥抱AI？</h2></div>
   <p>很多店总的第一反应是："我已经这么忙了，还要学新东西？"——但AI的核心价值恰恰是帮你<strong>减少忙碌</strong>，而不是增加负担。</p>
-
-  <div id="s1a"></div>
   <div class="section-title">1.1 效率对比：用AI前后</div>
-
   <div class="stats-row">
     <div class="stat-card"><div class="stat-num">95%</div><div class="stat-label">报告框架搭建<br>时间节省</div></div>
     <div class="stat-card"><div class="stat-num">95%</div><div class="stat-label">商户函件起草<br>时间节省</div></div>
@@ -809,24 +692,7 @@ tbody tr:last-child td { border-bottom: none; }
     <div class="stat-card"><div class="stat-num">98%</div><div class="stat-label">活动回顾视频<br>制作时间节省</div></div>
     <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">会议纪要整理<br>自动化程度</div></div>
   </div>
-
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>工作任务</th><th>传统方式耗时</th><th>用AI后耗时</th><th>节省</th></tr></thead>
-      <tbody>
-        <tr><td>月度经营分析报告框架</td><td>半天（4小时）</td><td>10分钟</td><td><strong style="color:var(--green)">95%</strong></td></tr>
-        <tr><td>商户催缴函件</td><td>1小时</td><td>3分钟</td><td><strong style="color:var(--green)">95%</strong></td></tr>
-        <tr><td>活动海报概念图</td><td>等排期 2天</td><td>15分钟</td><td><strong style="color:var(--green)">99%</strong></td></tr>
-        <tr><td>活动回顾视频剪辑</td><td>2天+制作费</td><td>1小时</td><td><strong style="color:var(--green)">98%</strong></td></tr>
-        <tr><td>会议纪要整理</td><td>30分钟手工</td><td>自动生成</td><td><strong style="color:var(--green)">100%</strong></td></tr>
-        <tr><td>短视频脚本</td><td>1小时</td><td>5分钟</td><td><strong style="color:var(--green)">92%</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div id="s1b"></div>
   <div class="section-title">1.2 对购物中心四大业务的核心价值</div>
-
   <div class="tbl-wrap">
     <table>
       <thead><tr><th>业务痛点</th><th>AI解决方案</th><th>预期效果</th></tr></thead>
@@ -838,117 +704,34 @@ tbody tr:last-child td { border-bottom: none; }
       </tbody>
     </table>
   </div>
-
   <div class="callout callout-tip">
     <div class="callout-title">🌟 核心观点</div>
     <p><strong>AI不会取代店总，但会用AI的店总，正在取代不会用的。</strong></p>
     <p>你的核心价值在于招商谈判、商户关系、顾客体验决策——把重复劳动交给AI，把精力留给这些真正需要你的地方。</p>
   </div>
 </section>
-
-<!-- ─── CHAPTER 2 ──────────────────── -->
 <section class="chapter" id="s2">
-  <div class="chapter-header">
-    <span class="chapter-num">02</span>
-    <h2>AI工具全景图与选型指南</h2>
-  </div>
+  <div class="chapter-header"><span class="chapter-num">02</span><h2>AI工具全景图与选型指南</h2></div>
   <p>面对市面上数百款AI工具，本章帮你建立清晰的认知框架——知道有什么、选哪个、怎么组合使用。</p>
-
-  <div id="s2a"></div>
   <div class="section-title">2.1 五大类AI工具一览</div>
-
   <div class="tbl-wrap">
     <table>
       <thead><tr><th>类别</th><th>推荐工具</th><th>核心能力</th><th>购物中心适用场景</th><th>费用</th><th>推荐指数</th></tr></thead>
       <tbody>
         <tr class="sub-header-row"><td colspan="6">📝 文本处理类</td></tr>
-        <tr>
-          <td>文本</td><td><strong>豆包</strong></td>
-          <td>多模态，语音通话拟人，长文本+图文理解，中文语境最优</td>
-          <td>周报、函件、活动脚本、日常问答</td>
-          <td><span class="badge badge-free">免费</span></td>
-          <td><span class="star-rating">★★★★★</span></td>
-        </tr>
-        <tr>
-          <td>文本</td><td><strong>DeepSeek</strong></td>
-          <td>逻辑推理和数据分析见长，国产，隐私安全性高</td>
-          <td>经营分析报告、数据整理、策略分析</td>
-          <td><span class="badge badge-free">免费</span></td>
-          <td><span class="star-rating">★★★★★</span></td>
-        </tr>
-        <tr>
-          <td>文本</td><td><strong>Kimi</strong></td>
-          <td>百万字级长文本处理，PDF/合同解读利器</td>
-          <td>解读租约合同、阅读行业报告</td>
-          <td><span class="badge badge-both">免费/付费</span></td>
-          <td><span class="star-rating">★★★★</span></td>
-        </tr>
-        <tr>
-          <td>文本</td><td><strong>通义千问</strong></td>
-          <td>阿里出品，专业度稳健，中文理解强</td>
-          <td>专业报告、行业分析</td>
-          <td><span class="badge badge-free">免费</span></td>
-          <td><span class="star-rating">★★★★</span></td>
-        </tr>
+        <tr><td>文本</td><td><strong>豆包</strong></td><td>多模态，语音通话拟人，长文本+图文理解，中文语境最优</td><td>周报、函件、活动脚本、日常问答</td><td><span class="badge badge-free">免费</span></td><td><span class="star-rating">★★★★★</span></td></tr>
+        <tr><td>文本</td><td><strong>DeepSeek</strong></td><td>逻辑推理和数据分析见长，国产，隐私安全性高</td><td>经营分析报告、数据整理、策略分析</td><td><span class="badge badge-free">免费</span></td><td><span class="star-rating">★★★★★</span></td></tr>
+        <tr><td>文本</td><td><strong>Kimi</strong></td><td>百万字级长文本处理，PDF/合同解读利器</td><td>解读租约合同、阅读行业报告</td><td><span class="badge badge-both">免费/付费</span></td><td><span class="star-rating">★★★★</span></td></tr>
         <tr class="sub-header-row"><td colspan="6">🎨 图像生成类</td></tr>
-        <tr>
-          <td>图像</td><td><strong>GPT-4o</strong></td>
-          <td>原生多模态，同时理解+生成图文，商业图质量高</td>
-          <td>活动海报、电商主图、物料延展</td>
-          <td><span class="badge badge-paid">付费</span></td>
-          <td><span class="star-rating">★★★★★</span></td>
-        </tr>
-        <tr>
-          <td>图像</td><td><strong>即梦AI</strong></td>
-          <td>与剪映深度打通，中文指令友好，功能全</td>
-          <td>海报打样、商户宣传图、导览图</td>
-          <td><span class="badge badge-both">免费/付费</span></td>
-          <td><span class="star-rating">★★★★★</span></td>
-        </tr>
-        <tr>
-          <td>图像</td><td><strong>Midjourney</strong></td>
-          <td>艺术风格和质量标杆，创意设计首选</td>
-          <td>节日美陈灵感、品牌视觉概念</td>
-          <td><span class="badge badge-paid">付费</span></td>
-          <td><span class="star-rating">★★★★</span></td>
-        </tr>
+        <tr><td>图像</td><td><strong>即梦AI</strong></td><td>与剪映深度打通，中文指令友好，功能全</td><td>海报打样、商户宣传图、导览图</td><td><span class="badge badge-both">免费/付费</span></td><td><span class="star-rating">★★★★★</span></td></tr>
+        <tr><td>图像</td><td><strong>Midjourney</strong></td><td>艺术风格和质量标杆，创意设计首选</td><td>节日美陈灵感、品牌视觉概念</td><td><span class="badge badge-paid">付费</span></td><td><span class="star-rating">★★★★</span></td></tr>
         <tr class="sub-header-row"><td colspan="6">🎬 视频生成类</td></tr>
-        <tr>
-          <td>视频</td><td><strong>可灵AI</strong></td>
-          <td>快手出品，支持2分钟长视频，物理真实感好</td>
-          <td>品牌快闪预告、活动精品视频</td>
-          <td><span class="badge badge-paid">付费</span></td>
-          <td><span class="star-rating">★★★★★</span></td>
-        </tr>
-        <tr>
-          <td>视频</td><td><strong>小云雀</strong></td>
-          <td>剪映出品，智能成片，一键生成4个版本，适合批量</td>
-          <td>批量商户探店视频、数字人视频</td>
-          <td><span class="badge badge-both">免费/付费</span></td>
-          <td><span class="star-rating">★★★★★</span></td>
-        </tr>
-        <tr class="sub-header-row"><td colspan="6">🎧 音频处理类</td></tr>
-        <tr>
-          <td>音频</td><td><strong>通义听悟</strong></td>
-          <td>会议录音转文字，自动生成纪要和待办</td>
-          <td>运营晨会、租户协调会议记录</td>
-          <td><span class="badge badge-free">免费</span></td>
-          <td><span class="star-rating">★★★★★</span></td>
-        </tr>
-        <tr>
-          <td>音频</td><td><strong>飞书妙记</strong></td>
-          <td>实时转录+发言人识别，飞书生态内无缝集成</td>
-          <td>使用飞书的团队首选</td>
-          <td><span class="badge badge-paid">付费</span></td>
-          <td><span class="star-rating">★★★★</span></td>
-        </tr>
+        <tr><td>视频</td><td><strong>可灵AI</strong></td><td>快手出品，支持2分钟长视频，物理真实感好</td><td>品牌快闪预告、活动精品视频</td><td><span class="badge badge-paid">付费</span></td><td><span class="star-rating">★★★★★</span></td></tr>
+        <tr><td>视频</td><td><strong>小云雀</strong></td><td>剪映出品，智能成片，一键生成4个版本，适合批量</td><td>批量商户探店视频、数字人视频</td><td><span class="badge badge-both">免费/付费</span></td><td><span class="star-rating">★★★★★</span></td></tr>
       </tbody>
     </table>
   </div>
-
-  <div id="s2b"></div>
   <div class="section-title">2.2 选型原则</div>
-
   <div class="callout callout-tip">
     <div class="callout-title">🎯 需求决定工具，场景驱动选择</div>
     <ul>
@@ -958,36 +741,21 @@ tbody tr:last-child td { border-bottom: none; }
     </ul>
   </div>
 </section>
-
-<!-- ─── CHAPTER 3 ──────────────────── -->
 <section class="chapter" id="s3">
-  <div class="chapter-header">
-    <span class="chapter-num">03</span>
-    <h2>提示词（Prompt）写作指南</h2>
-  </div>
+  <div class="chapter-header"><span class="chapter-num">03</span><h2>提示词（Prompt）写作指南</h2></div>
   <p>提示词是你和AI沟通的"指令语言"。同样一件事，普通提示词和高质量提示词的结果可能差十倍。本章提供一套万能公式 + 可直接复用的购物中心场景模板。</p>
-
-  <div id="s3a"></div>
   <div class="section-title">3.1 万能提示词公式（五要素）</div>
-
   <div class="callout callout-info">
     <div class="callout-title">📐 公式结构</div>
     <p style="font-family:var(--mono);font-size:13px;line-height:2;color:var(--ink)">
       <strong style="color:var(--teal)">角色设定</strong> ＋ <strong style="color:var(--teal)">任务描述</strong> ＋ <strong style="color:var(--teal)">具体要求</strong>（格式/风格/结构）＋ <strong style="color:var(--teal)">参考信息</strong> ＋ <strong style="color:var(--teal)">否定词</strong>（不要什么）
     </p>
-    <p style="font-size:13px;margin-top:8px;color:var(--ink-soft)">举例：<em>你是一位资深购物中心运营经理（角色）。请写一份给服装商户的国庆促销邀约函（任务），语气热情专业，包含三个要点（要求），落款为商场管理部（格式），不要催促性语气（否定词）。</em></p>
   </div>
-
-  <div id="s3b"></div>
   <div class="section-title">3.2 文字类提示词模板库</div>
-  <p>以下模板可直接复制使用，将 <code style="background:#e8f4f5;padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:12px;color:var(--teal)">【】</code> 内容替换为实际信息即可。</p>
-
+  <p>以下模板可直接复制使用，将【】内容替换为实际信息即可。</p>
   <div class="sub-title">模板① 月度经营分析报告</div>
   <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">经营分析报告提示词模板</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
+    <div class="prompt-header"><span class="prompt-label">经营分析报告提示词模板</span><button class="copy-btn">复制</button></div>
     <div class="prompt-content"><span class="c-label">你是一位资深购物中心运营分析师。</span>
 请根据以下数据，生成一份月度经营分析报告提纲：
 
@@ -1003,13 +771,9 @@ tbody tr:last-child td { border-bottom: none; }
 
 语气专业，使用数据说话，格式清晰，适合向集团汇报。</div>
   </div>
-
   <div class="sub-title">模板② 商户沟通函件（催缴/整改/邀约）</div>
   <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">商户函件提示词模板</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
+    <div class="prompt-header"><span class="prompt-label">商户函件提示词模板</span><button class="copy-btn">复制</button></div>
     <div class="prompt-content"><span class="c-label">你是购物中心管理部经理。请起草一份【催缴租金 / 活动邀约 / 违规整改】函。</span>
 
 商户名称：<span class="c-placeholder">【XX品牌】</span>
@@ -1021,364 +785,52 @@ tbody tr:last-child td { border-bottom: none; }
 落款：商场管理部，日期留空。
 不要使用威胁性语言。</div>
   </div>
-
-  <div class="sub-title">模板③ 短视频脚本（抖音/小红书）</div>
-  <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">短视频脚本提示词模板</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
-    <div class="prompt-content"><span class="c-label">你是一位擅长购物中心内容营销的短视频编导。</span>
-请写一个 <span class="c-placeholder">【15/30/60】</span> 秒的短视频脚本。
-
-主题：<span class="c-placeholder">【周末遛娃好去处 / 新品牌入驻 / 节日活动预告】</span>
-平台：<span class="c-placeholder">【抖音 / 小红书 / 视频号】</span>
-核心亮点：<span class="c-placeholder">【亲子业态+安全设施 / 品牌特色 / 优惠信息】</span>
-目标受众：<span class="c-placeholder">【25-35岁宝妈 / 年轻白领 / 家庭客群】</span>
-
-格式要求：
-- 包含【时间码】标注，如"0-3秒：..."
-- 每个镜头描述画面内容+字幕文字
-- 结尾必须有到店引导
-- 开场3秒必须抓住注意力</div>
-  </div>
-
-  <div class="sub-title">模板④ 招商文案优化</div>
-  <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">招商文案优化提示词模板</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
-    <div class="prompt-content"><span class="c-label">你是一位专业商业地产招商顾问。</span>
-请将以下铺位介绍改写成更有吸引力的招商文案：
-
-<span class="c-placeholder">【粘贴原始铺位信息】</span>
-
-改写要求：
-- 突出位置优势（客流动线/周边品牌效应）
-- 说明适合业态及理由
-- 加入数据支撑（如日均客流量、周边消费力）
-- 语气专业有感染力，适合招商手册和BD话术
-- 长度：300-500字</div>
-  </div>
-
-  <div id="s3c"></div>
-  <div class="section-title">3.3 图片类提示词模板库</div>
-
-  <div class="sub-title">模板⑤ 活动海报（图片生成）</div>
-  <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">活动海报图片生成提示词模板</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
-    <div class="prompt-content"><span class="c-label">你是一位顶级商业插画师/3D设计师。</span>
-任务：为 <span class="c-placeholder">【暑期亲子嘉年华/国庆购物节/圣诞狂欢夜】</span> 创作一张主视觉海报。
-
-主体：<span class="c-placeholder">【卡通亲子人物/节日IP形象】</span>，
-      <span class="c-placeholder">【Q版/写实/3D渲染】</span> 风格，表情 <span class="c-placeholder">【欢乐/惊喜/温暖】</span>
-
-背景：<span class="c-placeholder">【蓝天白云/霓虹灯城市夜景/温暖橙色暖光】</span>
-构图：主体居中偏下，上方留1/3空间放标题文字
-色彩：主色调 <span class="c-placeholder">【明亮蓝+金黄 / 红色+金色】</span>，饱和度高，充满活力
-风格：<span class="c-placeholder">【皮克斯3D动画/扁平插画/写实摄影】</span>
-
-比例：9:16（手机海报）/ 16:9（公众号头图）
-不要：不要暗黑风格，不要复杂背景，不要明显AI瑕疵</div>
-  </div>
-
-  <div class="sub-title">模板⑥ 商户宣传图优化（上传图片后使用）</div>
-  <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">商户图片优化提示词模板</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
-    <div class="prompt-content">请优化这张 <span class="c-placeholder">【餐饮菜品/服装产品/门店环境】</span> 图片：
-
-具体要求：
-- 将背景替换为 <span class="c-placeholder">【高级深色木纹/纯白简洁/户外自然光场景】</span>
-- 增强色彩饱和度，让主体更有吸引力/食欲感
-- 光线调整为 <span class="c-placeholder">【柔和自然光/暖色灯光/专业摄影棚光效】</span>
-- 保持主体不变，只优化背景和光线
-- 输出比例：1:1（朋友圈/小红书）</div>
-  </div>
-
-  <div id="s3d"></div>
-  <div class="section-title">3.4 视频类提示词模板库</div>
-
-  <div class="sub-title">模板⑦ 品牌入驻快闪预告视频</div>
-  <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">快闪预告视频提示词模板（可灵AI）</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
-    <div class="prompt-content">生成一段15秒的品牌入驻预热视频。
-素材：<span class="c-placeholder">【上传品牌Logo图片/店铺效果图】</span>
-
-视频要求：
-0-5秒：镜头缓缓推进，店铺内部灯光依次亮起
-5-10秒：门口招牌闪烁发光，品牌Logo逐渐清晰
-10-15秒：画面定格，显示 <span class="c-placeholder">【开业日期】</span>，配文"即将开业"
-
-风格：电影质感，光线温暖，节奏由慢到快
-比例：9:16（竖屏），高品质1080p
-不要：不要生硬特效，不要字幕遮挡Logo</div>
-  </div>
-
-  <div class="sub-title">模板⑧ 活动混剪视频</div>
-  <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">活动混剪提示词模板（即梦AI/小云雀）</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
-    <div class="prompt-content">请将以下 <span class="c-placeholder">【X条】</span> 活动现场素材剪辑成一条60秒的活动回顾视频。
-<span class="c-placeholder">【上传活动现场照片/视频素材】</span>
-
-剪辑要求：
-- 开头5秒：最精彩高光画面 + 活动名称大字标题
-- 中间40秒：开场→互动→颁奖/高潮→顾客反应
-- 结尾15秒：品牌Logo + "精彩还在继续，下次见！"
-
-风格：卡点剪辑，配热门BGM，暖色调后期
-字幕：关键时刻加大字标注
-比例：9:16，优先保留有顾客面部表情的镜头</div>
-  </div>
 </section>
-
-<!-- ─── CHAPTER 4 ──────────────────── -->
 <section class="chapter" id="s4">
-  <div class="chapter-header">
-    <span class="chapter-num">04</span>
-    <h2>常用工具操作SOP</h2>
-  </div>
+  <div class="chapter-header"><span class="chapter-num">04</span><h2>常用工具操作SOP</h2></div>
   <p>本章提供手把手操作指南，让完全零基础的员工也能在30分钟内上手第一个任务。</p>
-
-  <div id="s4a"></div>
   <div class="section-title">4.1 豆包 / DeepSeek——文字处理</div>
-  <p style="margin-bottom:16px">目标：5分钟内完成一份初稿，10分钟搞定数据整理。</p>
-
+  <p>目标：5分钟内完成一份初稿，10分钟搞定数据整理。</p>
   <ul class="steps">
-    <li><div class="step-num">①</div><div class="step-body"><strong>注册登录（一次性）</strong><p>豆包：手机应用商店搜索"豆包"下载，或访问 doubao.com，用手机号/抖音账号登录。DeepSeek：访问 chat.deepseek.com，用邮箱或手机号注册。两款均免费。</p></div></li>
-    <li><div class="step-num">②</div><div class="step-body"><strong>明确任务（5秒）</strong><p>打开对话框前，心里想清楚：是写文案？还是分析数据？还是翻译？任务越具体，AI结果越好。</p></div></li>
-    <li><div class="step-num">③</div><div class="step-body"><strong>输入提示词（30秒）</strong><p>直接将上章模板复制进去，替换【】内容。写文案时用"角色+任务+要求"格式；处理数据时直接把Excel数据粘贴进去，再问"请分析本月客流环比变化"。</p></div></li>
-    <li><div class="step-num">④</div><div class="step-body"><strong>获取结果与微调（2分钟）</strong><p>觉得语气太硬：输入"语气再柔和一点，加一句感谢语"。觉得太长：输入"缩短到200字，只保留核心要点"。不满意就继续对话，不用重新开始。</p></div></li>
-    <li><div class="step-num">⑤</div><div class="step-body"><strong>导出与存档</strong><p>DeepSeek支持收藏对话或导出文档。豆包生成的文案直接复制到Word或微信发给领导确认。记得把好用的提示词保存到本地文档。</p></div></li>
-  </ul>
-
-  <div class="callout callout-tip">
-    <div class="callout-title">🌟 店总实操建议</div>
-    <p>建立部门专属"提示词库"：把写得最好的那份催款通知存为模板，以后只需输入"商户名+欠款金额+截止日期"，AI就能生成语气一致的函件。建议在腾讯文档/飞书建一个《AI提示词库》，全团队共用、持续迭代。</p>
-  </div>
-
-  <div id="s4b"></div>
-  <div class="section-title">4.2 KIMI + 即梦AI——图片生成</div>
-  <p style="margin-bottom:16px">目标：10分钟出一张海报概念图，20分钟搞定一张商品主图。</p>
-
-  <ul class="steps">
-    <li><div class="step-num">①</div><div class="step-body"><strong>访问工具</strong><p>KIMI：kimi.com（免费可用）。即梦AI：jimeng.jianying.com 或手机下载App。建议用电脑端，界面更直观。</p></div></li>
-    <li><div class="step-num">②</div><div class="step-body"><strong>在KIMI生成魔法提示词（2分钟）</strong><p>打开KIMI，用自然语言描述你需要的图片，请它生成5组AI绘图提示词，指定风格和比例。KIMI会输出结构化专业提示词，不必自己写。</p></div></li>
-    <li><div class="step-num">③</div><div class="step-body"><strong>在即梦AI生成图片（3分钟）</strong><p>创作中心→图片生成→粘贴提示词。风格选写实/插画/3D，比例选16:9或9:16，精细度拉到7-8档。点击生成，默认出4张。</p></div></li>
-    <li><div class="step-num">④</div><div class="step-body"><strong>微调优化</strong><p>不满意的区域用"智能画布"擦除让AI重绘。整体不满意则修改提示词重新生成。一般3-5次迭代可达理想效果。</p></div></li>
-    <li><div class="step-num">⑤</div><div class="step-body"><strong>使用规范</strong><p>社群预览/内部过会：直接用AI图。正式印刷物料：发给设计师说"按这个风格细化"。明确区分正式与非正式场景。</p></div></li>
-  </ul>
-
-  <div id="s4c"></div>
-  <div class="section-title">4.3 可灵AI——精品视频制作</div>
-  <p style="margin-bottom:16px">目标：15秒预告片，半小时出片，无需摄像机。</p>
-
-  <ul class="steps">
-    <li><div class="step-num">①</div><div class="step-body"><strong>访问工具</strong><p>电脑访问 app.klingai.com，用手机号注册登录。新注册用户可获赠积分用于生成视频，建议先用免费积分练手。</p></div></li>
-    <li><div class="step-num">②</div><div class="step-body"><strong>准备素材</strong><p>找一张高清店铺效果图或Logo图（建议800×800以上），保存到桌面备用。图片质量越高，视频效果越好。</p></div></li>
-    <li><div class="step-num">③</div><div class="step-body"><strong>图生视频核心操作</strong><p>首页→图生视频→上传图片→填写创意描述。模式选"高品质"（1080p），时长选5或10秒，比例选9:16。创意描述写清楚：镜头运动+灯光变化+最终定格。</p></div></li>
-    <li><div class="step-num">④</div><div class="step-body"><strong>生成与下载</strong><p>点击生成，等待约30-60秒。预览满意后直接下载。不满意则修改提示词或点"再次生成"——同一提示词多次生成结果会有差异，多试几次。</p></div></li>
-    <li><div class="step-num">⑤</div><div class="step-body"><strong>进阶玩法</strong><p>老照片复活：上传老照片，描述"照片里的人微笑眨眼"。多图互动：上传两个IP形象，描述互动场景，可灵会让它们同框互动。</p></div></li>
-  </ul>
-
-  <div id="s4d"></div>
-  <div class="section-title">4.4 小云雀——批量视频生产</div>
-
-  <ul class="steps">
-    <li><div class="step-num">①</div><div class="step-body"><strong>访问工具</strong><p>手机下载"小云雀AI"App，或访问 xyq.jianying.com。用抖音/剪映账号登录。手机端体验更完整。</p></div></li>
-    <li><div class="step-num">②</div><div class="step-body"><strong>智能生视频</strong><p>首页→智能生视频→粘贴自然语言描述指令→点击生成。系统自动分析需求、撰写脚本、生成4个版本（约3-5分钟）。</p></div></li>
-    <li><div class="step-num">③</div><div class="step-body"><strong>选择与优化</strong><p>预览4个版本，选最满意的。点"修改想法"输入优化指令，如"BGM换更欢快的""结尾字体放大"。不必重头来过。</p></div></li>
-    <li><div class="step-num">④</div><div class="step-body"><strong>数字人视频（进阶）</strong><p>选择数字人视频→挑选AI形象（200+可商用）→输入口播文案→选择音色→生成。适合商户没时间出镜的场景，支持19种语言。</p></div></li>
-    <li><div class="step-num">⑤</div><div class="step-body"><strong>爆款复刻（进阶）</strong><p>找到抖音上的爆款视频，复制链接，在小云雀输入框粘贴链接，输入"请模仿此视频风格生成[品牌名]探店视频"，AI自动分析风格并复刻。</p></div></li>
+    <li><div class="step-num">①</div><div class="step-body"><strong>注册登录（一次性）</strong><p>豆包：手机应用商店搜索"豆包"下载，或访问 doubao.com。DeepSeek：访问 chat.deepseek.com。两款均免费。</p></div></li>
+    <li><div class="step-num">②</div><div class="step-body"><strong>明确任务（5秒）</strong><p>打开对话框前，心里想清楚：是写文案？还是分析数据？任务越具体，AI结果越好。</p></div></li>
+    <li><div class="step-num">③</div><div class="step-body"><strong>输入提示词（30秒）</strong><p>直接将上章模板复制进去，替换【】内容。</p></div></li>
+    <li><div class="step-num">④</div><div class="step-body"><strong>获取结果与微调（2分钟）</strong><p>觉得语气太硬：输入"语气再柔和一点"。不满意就继续对话，不用重新开始。</p></div></li>
+    <li><div class="step-num">⑤</div><div class="step-body"><strong>导出与存档</strong><p>DeepSeek支持收藏对话或导出文档。记得把好用的提示词保存到本地文档。</p></div></li>
   </ul>
 </section>
-
-<!-- ─── CHAPTER 5 ──────────────────── -->
 <section class="chapter" id="s5">
-  <div class="chapter-header">
-    <span class="chapter-num">05</span>
-    <h2>购物中心业务场景实战案例</h2>
-  </div>
-  <p>通过3个完整案例，展示从"看到好内容"→"拆解要素"→"写提示词"→"AI生成"→"迭代优化"的全流程。</p>
-
-  <div id="s5a"></div>
+  <div class="chapter-header"><span class="chapter-num">05</span><h2>业务场景实战案例</h2></div>
+  <p>通过实战案例，展示从"看到好内容"→"拆解要素"→"写提示词"→"AI生成"→"迭代优化"的全流程。</p>
   <div class="section-title">案例一：生成活动海报（图片）</div>
   <p>场景：需要为"暑期海洋探险"活动快速制作一张主视觉海报。</p>
-
-  <div class="sub-title">第一步：拆解目标图的视觉要素</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>要素维度</th><th>观察结果</th><th>为什么重要</th></tr></thead>
-      <tbody>
-        <tr><td>主体</td><td>巨大透明水晶海洋球（主角）+ 球内卡通鱼/海星/海龟 + 球外2-3个好奇的小朋友</td><td>AI需要知道主角是谁、什么状态</td></tr>
-        <tr><td>背景</td><td>浅蓝色水波纹，光束从正上方洒下（丁达尔效应）</td><td>氛围感的来源</td></tr>
-        <tr><td>构图</td><td>海洋球居中占70%画面，小朋友环绕球体下方，顶部留白放标题</td><td>决定画面的布局</td></tr>
-        <tr><td>色彩</td><td>蓝、白、橙黄为主，高饱和度，通透感强</td><td>情绪基调</td></tr>
-        <tr><td>风格</td><td>3D卡通渲染，皮克斯/迪士尼质感</td><td>整体调性定位</td></tr>
-        <tr><td>细节</td><td>海洋球透明可见内部，水里有小气泡，小朋友表情惊喜</td><td>让画面更高级</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="sub-title">第二步：完整提示词</div>
   <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">暑期海洋探险活动海报——完整提示词</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
+    <div class="prompt-header"><span class="prompt-label">暑期海洋探险活动海报——完整提示词</span><button class="copy-btn">复制</button></div>
     <div class="prompt-content">你是一位顶级3D动画设计师。
 任务：为购物中心暑期活动创作主视觉海报。
 
-主体：
-  - 画面中心：巨大的、完全透明的水晶质感海洋球
-  - 球内：卡通小丑鱼（橙白）、粉色海星、绿色小海龟，快乐游动
-  - 球外：三个5-6岁小朋友，穿夏装，脸贴着玻璃，好奇惊喜地往里看
+主体：画面中心巨大的、完全透明的水晶质感海洋球
+球内：卡通小丑鱼、粉色海星、绿色小海龟
+球外：三个5-6岁小朋友，好奇惊喜地往里看
 
-环境：浅蓝色水下光影背景，几束"上帝之光"从正上方斜射下来
-构图：海洋球绝对居中，小朋友环绕下半部分，顶部留1/3空白
-色彩：海洋蓝+纯白+鲜艳橙黄，高饱和度，充满夏日活力
-风格：皮克斯3D动画质感，玻璃球有真实折射和反射效果
-技术：8K分辨率，超广角，景深（背景稍模糊突出主体）
-
-比例：9:16  |  不要：写实风格/暗淡色彩/小朋友在球内部</div>
-  </div>
-
-  <div class="sub-title">第三步：迭代优化指令</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>发现问题</th><th>追加优化指令</th></tr></thead>
-      <tbody>
-        <tr><td>小朋友表情不够生动</td><td>请让趴在球上的小朋友眼睛睁大、嘴巴张开呈O型，表现出"哇！"的惊喜感</td></tr>
-        <tr><td>海洋球透明感不足</td><td>增强玻璃质感，让球面有更明显的光线折射，能看到内部生物因玻璃曲面产生的轻微变形</td></tr>
-        <tr><td>背景层次感弱</td><td>在背景中添加更多细小的、缓缓上升的白色气泡，增强水下氛围</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout callout-tip">
-    <div class="callout-title">💡 迭代规律</div>
-    <p>一般迭代3-4次可以达到理想效果。每次只修改1-2个要素，能清晰判断哪个指令有效。最终产出可直接用于社群预热；正式印刷时，将AI图发给设计师作为精准视觉参考。</p>
-  </div>
-
-  <div id="s5b"></div>
-  <div class="section-title">案例二：生成推文（文字）</div>
-  <p>场景：想模仿奈雪的茶风格，为商场秋季奶茶节写一篇公众号推文。</p>
-
-  <div class="sub-title">第一步：拆解目标文案的写作要素</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>要素维度</th><th>观察结果</th></tr></thead>
-      <tbody>
-        <tr><td>角色设定</td><td>温暖的朋友/邻家姐姐，而非品牌官方发言人</td></tr>
-        <tr><td>语气</td><td>温柔细腻，用"你"拉近距离，像私聊而非群发</td></tr>
-        <tr><td>结构</td><td>场景引入→产品亮点→情感升华→优惠信息→行动号召</td></tr>
-        <tr><td>修辞手法</td><td>通感（"嚼到秋天的香气"）、比喻、排比</td></tr>
-        <tr><td>用词偏好</td><td>叠词（QQ弹弹）、口语化（"不像话"）、温暖向词汇</td></tr>
-        <tr><td>情感共鸣</td><td>孤独感→回忆杀→社交需求，层层递进</td></tr>
-        <tr><td>产品描述</td><td>不堆砌参数，而是描述感官体验</td></tr>
-        <tr><td>目标读者</td><td>20-35岁女性，注重生活仪式感</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="sub-title">第二步：完整提示词</div>
-  <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">秋季奶茶节推文——完整提示词</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
-    <div class="prompt-content">你是一位擅长生活方式品牌文案的资深编辑，风格类似奈雪的茶。
-任务：为【XX商场】秋季奶茶节写一篇公众号推文，推广场内奶茶品牌。
-
-语气风格：温暖细腻，像朋友间的私语，多用"你"，避免硬广语气
-
-结构要求：
-  场景引入（80-100字）：用秋天日常场景开头（凉风/落叶/下班路上）
-  产品介绍（200-250字）：介绍3款奶茶，写喝到的感觉而非配料表
-  情感升华（80-100字）：把奶茶和陪伴/犒劳/分享等情感连接
-  活动信息（50字）：本周末，买一送一/集章抽免单
-  行动号召（一句话）：引导到店
-
-修辞偏好：多叠词（暖暖的/糯叽叽）、多感官描述、用短句制造呼吸感
-目标读者：20-35岁女性  |  长度：500-600字
-不要：硬广语气，不要用"最好喝""第一"等夸张词</div>
-  </div>
-
-  <div id="s5c"></div>
-  <div class="section-title">案例三：生成探店视频</div>
-  <p>场景：想模仿抖音爆款探店视频，批量为场内商户生产短视频内容。</p>
-
-  <div class="sub-title">第一步：拆解爆款视频要素</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>要素维度</th><th>观察结果</th><th>为什么重要</th></tr></thead>
-      <tbody>
-        <tr><td>结构/叙事</td><td>5段式：吸睛开头→环境扫视→制作过程→成品展示→位置引导</td><td>决定视频的起承转合</td></tr>
-        <tr><td>时长节奏</td><td>15秒，每个镜头2-3秒，卡点剪辑</td><td>影响完播率</td></tr>
-        <tr><td>画面内容</td><td>饮品特写（热气）→门头Logo→制作过程→成品→位置字幕</td><td>每个镜头的具体内容</td></tr>
-        <tr><td>视觉风格</td><td>暖色调，高饱和度，背景虚化突出主体</td><td>营造食欲感和氛围</td></tr>
-        <tr><td>音频</td><td>轻快卡点BGM，无配音，靠字幕传递信息</td><td>音乐类型影响观看感受</td></tr>
-        <tr><td>文字设计</td><td>大字标题、优惠信息突出、位置字幕清晰</td><td>信息传递方式</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="sub-title">第二步：完整提示词（小云雀适用）</div>
-  <div class="prompt-box">
-    <div class="prompt-header">
-      <span class="prompt-label">奶茶店探店视频——完整提示词</span>
-      <button class="copy-btn" onclick="copyPrompt(this)">复制</button>
-    </div>
-    <div class="prompt-content">生成一条15秒的【品牌名】奶茶店探店视频。
-
-分镜要求：
-  0-3秒：饮品特写，热气腾腾，字幕"这杯绝了🔥"
-  3-6秒：快速扫过门店，展示品牌Logo，暖黄色灯光
-  6-10秒：制作过程特写——摇杯、倒生椰乳、撒桂花
-  10-13秒：成品展示，配字幕"奶香浓郁·茶底清爽"，旁边"买一送一"立牌
-  13-15秒：位置指引字幕"【XX商场】1楼中庭旁"，配文"明天见！"
-
-风格：暖色调，卡点剪辑，抖音热门轻快BGM
-比例：9:16竖屏  |  不要：沉闷音乐/过长镜头/复杂转场</div>
-  </div>
-
-  <div class="callout callout-info">
-    <div class="callout-title">🚀 批量生产技巧</div>
-    <p>建立品牌模板库，每次只替换品牌名和地点，风格和结构保持固定。两周目标：能用小云雀每天产出5-10条商户视频；用可灵制作重要节点精品视频；建立自己的"爆款视频拆解库"。</p>
+环境：浅蓝色水下光影背景
+风格：皮克斯3D动画质感
+比例：9:16</div>
   </div>
 </section>
-
-<!-- ─── CHAPTER 6 ──────────────────── -->
 <section class="chapter" id="s6">
-  <div class="chapter-header">
-    <span class="chapter-num">06</span>
-    <h2>团队落地三步走</h2>
-  </div>
+  <div class="chapter-header"><span class="chapter-num">06</span><h2>团队落地三步走</h2></div>
   <p>知道了工具和方法，关键是真正用起来。以下是一套适合购物中心团队的推进节奏。</p>
-
   <div class="timeline">
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-phase">第1个月</div>
       <div class="tl-title">工具试点阶段</div>
       <ul class="tl-body">
-        <li>文字组（运营/市场）：安装豆包 + DeepSeek（均免费），每人每周用AI完成1份工作任务并截图记录</li>
-        <li>设计组：试用KIMI + 即梦AI，每周提交1张AI生成的活动物料概念图</li>
+        <li>文字组：安装豆包 + DeepSeek，每人每周用AI完成1份工作任务</li>
+        <li>设计组：试用KIMI + 即梦AI，每周提交1张AI生成的活动物料</li>
         <li>策划/内容组：试用可灵AI + 小云雀，每周生成1条商户短视频</li>
-        <li>会议记录：所有会议用通义听悟/飞书妙记自动生成纪要，停止手工整理</li>
-        <li>每周一例会：每人3分钟分享本周AI使用成果和踩坑经验，好的提示词收录进共享文档</li>
+        <li>每周一例会：每人3分钟分享本周AI使用成果和踩坑经验</li>
       </ul>
     </div>
     <div class="tl-item">
@@ -1386,10 +838,10 @@ tbody tr:last-child td { border-bottom: none; }
       <div class="tl-phase">第2-3个月</div>
       <div class="tl-title">流程融合阶段</div>
       <ul class="tl-body">
-        <li>将AI纳入标准流程：所有对外文案经AI润色检查，活动预热视频先由AI生成多版本测试</li>
-        <li>设立"AI数字内容岗"（由原设计或策划兼任），专门批量服务场内商户，每户每月免费提供2-3条短视频</li>
-        <li>组织商户AI培训：教商户用简单AI工具自己发抖音、小红书，提升自主经营能力</li>
-        <li>建立内容素材库：把每次AI生成的好图、好视频分类存档，形成可复用的素材资产</li>
+        <li>将AI纳入标准流程：所有对外文案经AI润色检查</li>
+        <li>设立"AI数字内容岗"，专门批量服务场内商户</li>
+        <li>组织商户AI培训：教商户用简单AI工具自己发抖音、小红书</li>
+        <li>建立内容素材库：把每次AI生成的好图、好视频分类存档</li>
       </ul>
     </div>
     <div class="tl-item">
@@ -1398,26 +850,19 @@ tbody tr:last-child td { border-bottom: none; }
       <div class="tl-title">深化评估阶段</div>
       <ul class="tl-body">
         <li>复盘效率提升：文案生产时间节省60%以上、外包制作费用减少50%以上</li>
-        <li>AI客服机器人：解答顾客基础问询（营业时间/停车/会员权益），解放运营人力</li>
-        <li>AI数据分析：将摄像头客流数据接入AI，自动生成客流热力报告，指导业态调整</li>
-        <li>AI精准营销：分析会员消费行为，自动推送个性化优惠，提升复购率</li>
+        <li>AI客服机器人：解答顾客基础问询</li>
+        <li>AI数据分析：自动生成客流热力报告</li>
+        <li>AI精准营销：分析会员消费行为，自动推送个性化优惠</li>
       </ul>
     </div>
   </div>
-
   <div class="callout callout-tip">
     <div class="callout-title">🌟 一句话总结</div>
     <p>带领团队从处理一份周报、生成一张海报、剪辑一段视频开始，把重复劳动交给AI，把更多精力留给<strong>招商谈判、商户关系和顾客体验</strong>——这些才是你作为管理者的核心价值。</p>
   </div>
 </section>
-
-<!-- ─── APPENDIX ──────────────────── -->
 <section class="chapter" id="s7">
-  <div class="chapter-header">
-    <span class="chapter-num">附录</span>
-    <h2>常用AI工具速查表</h2>
-  </div>
-
+  <div class="chapter-header"><span class="chapter-num">附录</span><h2>常用AI工具速查表</h2></div>
   <div class="tbl-wrap">
     <table>
       <thead><tr><th>类别</th><th>工具名</th><th>访问地址</th><th>费用</th><th>推荐指数</th><th>最适合场景</th></tr></thead>
@@ -1426,22 +871,17 @@ tbody tr:last-child td { border-bottom: none; }
         <tr><td>文本</td><td><strong>豆包</strong></td><td><a class="app-url" href="https://www.doubao.com/chat/" target="_blank">doubao.com</a></td><td><span class="badge badge-free">免费</span></td><td><span class="star-rating">★★★★★</span></td><td>日常文案、函件、会话</td></tr>
         <tr><td>文本</td><td><strong>DeepSeek</strong></td><td><a class="app-url" href="https://chat.deepseek.com/" target="_blank">chat.deepseek.com</a></td><td><span class="badge badge-free">免费</span></td><td><span class="star-rating">★★★★★</span></td><td>数据分析、报告框架</td></tr>
         <tr><td>文本</td><td><strong>Kimi</strong></td><td><a class="app-url" href="https://www.kimi.com/" target="_blank">kimi.com</a></td><td><span class="badge badge-both">免费/付费</span></td><td><span class="star-rating">★★★★</span></td><td>长文档解读、合同分析</td></tr>
-        <tr><td>文本</td><td><strong>通义千问</strong></td><td><a class="app-url" href="https://tongyi.aliyun.com" target="_blank">tongyi.aliyun.com</a></td><td><span class="badge badge-free">免费</span></td><td><span class="star-rating">★★★★</span></td><td>专业报告、行业资讯</td></tr>
         <tr class="sub-header-row"><td colspan="6">🎨 图像生成</td></tr>
         <tr><td>图像</td><td><strong>即梦AI</strong></td><td><a class="app-url" href="https://jimeng.jianying.com/ai-tool/home" target="_blank">jimeng.jianying.com</a></td><td><span class="badge badge-both">免费/付费</span></td><td><span class="star-rating">★★★★★</span></td><td>海报概念图、商户宣传图</td></tr>
-        <tr><td>图像</td><td><strong>GPT-4o</strong></td><td><a class="app-url" href="https://chat.openai.com" target="_blank">chat.openai.com</a></td><td><span class="badge badge-paid">付费</span></td><td><span class="star-rating">★★★★★</span></td><td>高质量商业图、物料延展</td></tr>
         <tr><td>图像</td><td><strong>Midjourney</strong></td><td><a class="app-url" href="https://midjourney.com" target="_blank">midjourney.com</a></td><td><span class="badge badge-paid">付费</span></td><td><span class="star-rating">★★★★</span></td><td>创意灵感、节日美陈概念</td></tr>
         <tr class="sub-header-row"><td colspan="6">🎬 视频生成</td></tr>
         <tr><td>视频</td><td><strong>小云雀</strong></td><td><a class="app-url" href="https://xyq.jianying.com/" target="_blank">xyq.jianying.com</a></td><td><span class="badge badge-both">免费/付费</span></td><td><span class="star-rating">★★★★★</span></td><td>批量探店视频、数字人视频</td></tr>
         <tr><td>视频</td><td><strong>可灵AI</strong></td><td><a class="app-url" href="https://app.klingai.com/cn/" target="_blank">app.klingai.com</a></td><td><span class="badge badge-paid">付费</span></td><td><span class="star-rating">★★★★★</span></td><td>精品活动视频、品牌预告</td></tr>
-        <tr><td>视频</td><td><strong>即梦AI</strong></td><td><a class="app-url" href="https://jimeng.jianying.com/ai-tool/home" target="_blank">jimeng.jianying.com</a></td><td><span class="badge badge-both">免费/付费</span></td><td><span class="star-rating">★★★★</span></td><td>活动混剪、导览视频</td></tr>
         <tr class="sub-header-row"><td colspan="6">🎧 音频处理</td></tr>
         <tr><td>音频</td><td><strong>通义听悟</strong></td><td><a class="app-url" href="https://tingwu.aliyun.com" target="_blank">tingwu.aliyun.com</a></td><td><span class="badge badge-free">免费</span></td><td><span class="star-rating">★★★★★</span></td><td>会议纪要自动生成</td></tr>
-        <tr><td>集合</td><td><strong>AskManyAI</strong></td><td><a class="app-url" href="https://askmany.cn/index" target="_blank">askmany.cn</a></td><td><span class="badge badge-both">免费/付费</span></td><td><span class="star-rating">★★★★</span></td><td>多款AI工具一站式入口</td></tr>
       </tbody>
     </table>
   </div>
-
   <div class="callout callout-tip">
     <div class="callout-title">📌 使用说明</div>
     <ul>
@@ -1451,78 +891,53 @@ tbody tr:last-child td { border-bottom: none; }
       <li>如有疑问，可将问题直接发给豆包或DeepSeek，AI会给出详细解答。</li>
     </ul>
   </div>
-
   <p style="text-align:center;color:var(--ink-soft);font-size:13px;margin-top:48px;padding-top:24px;border-top:1px solid var(--rule)">
     购物中心AI工具培训手册（店总版）· 2025年版 · 如需更新请联系培训负责人
   </p>
 </section>
-
-</div><!-- /content -->
+</div>
 </main>
-
-<!-- Back to top -->
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
+<button id="back-top">↑</button>
 <script>
-// Progress bar
-const bar = document.getElementById('progress-bar');
-const backTop = document.getElementById('back-top');
-window.addEventListener('scroll', () => {
-  const main = document.getElementById('main');
-  const scrolled = window.scrollY;
-  const total = document.documentElement.scrollHeight - window.innerHeight;
-  bar.style.width = (scrolled / total * 100) + '%';
-  backTop.classList.toggle('show', scrolled > 400);
-  updateNav();
+document.addEventListener('DOMContentLoaded', function () {
+  const bar      = document.getElementById('progress-bar');
+  const backTop  = document.getElementById('back-top');
+  const sidebar  = document.getElementById('sidebar');
+  const menuBtn  = document.getElementById('menu-btn');
+  window.addEventListener('scroll', function () {
+    const scrolled = window.scrollY;
+    const total    = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.width = (scrolled / total * 100) + '%';
+    if (backTop) backTop.classList.toggle('show', scrolled > 400);
+  });
+  if (backTop) {
+    backTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () {
+      sidebar.classList.toggle('open');
+    });
+  }
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var content = btn.closest('.prompt-box').querySelector('.prompt-content');
+      var text    = content ? content.innerText : '';
+      if (!text) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = '已复制 ✓';
+          btn.classList.add('copied');
+          setTimeout(function () {
+            btn.textContent = '复制';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      }
+    });
+  });
 });
-
-// Active nav tracking
-function updateNav() {
-  const sections = ['s0','s1','s2','s3','s4','s5','s6','s7'];
-  const navItems = document.querySelectorAll('.nav-item');
-  let current = sections[0];
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && window.scrollY + 120 >= el.getBoundingClientRect().top + window.scrollY) {
-      current = id;
-    }
-  });
-  navItems.forEach((item, i) => {
-    item.classList.toggle('active', i === sections.indexOf(current));
-  });
-}
-
-// Scroll to section
-function scrollTo(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    const offset = el.getBoundingClientRect().top + window.scrollY - 24;
-    window.scrollTo({ top: offset, behavior: 'smooth' });
-  }
-  if (window.innerWidth <= 900) {
-    document.getElementById('sidebar').classList.remove('open');
-  }
-}
-
-// Copy prompt
-function copyPrompt(btn) {
-  const box = btn.closest('.prompt-box');
-  const content = box.querySelector('.prompt-content');
-  const text = content.innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '已复制 ✓';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = '复制';
-      btn.classList.remove('copied');
-    }, 2000);
-  });
-}
-
-// Mobile sidebar
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-}
 </script>
 </body>
 </html>
