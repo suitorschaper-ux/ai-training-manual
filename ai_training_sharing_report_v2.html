@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI工具提效分享 · 店总培训手册案例</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink-60: rgba(26,24,20,0.6);
+    --ink-20: rgba(26,24,20,0.12);
+    --paper: #f5f2ec;
+    --paper-2: #ede9e0;
+    --accent: #c8401a;
+    --accent-light: rgba(200,64,26,0.1);
+    --gold: #b8922a;
+    --gold-light: rgba(184,146,42,0.12);
+    --teal: #1a6b5a;
+    --teal-light: rgba(26,107,90,0.1);
+    --blue: #1a3f6b;
+    --blue-light: rgba(26,63,107,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 19px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ===== NOISE TEXTURE OVERLAY ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--accent);
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; right: 0;
+    padding: 1.5rem 2rem;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  nav a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--ink-60);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    font-family: 'DM Mono', monospace;
+  }
+
+  nav a:hover, nav a.active { color: var(--accent); }
+
+  /* ===== COVER ===== */
+  #cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 10vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-rule {
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 2rem;
+    animation: expand 1s ease forwards;
+    transform-origin: left;
+  }
+
+  @keyframes expand {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+
+  .cover-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s ease forwards;
+  }
+
+  .cover-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .cover-subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--ink-60);
+    max-width: 480px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s ease forwards;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.65s ease forwards;
+  }
+
+  .cover-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cover-meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-60);
+  }
+
+  .cover-meta-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .cover-bg-text {
+    position: absolute;
+    right: -2vw;
+    bottom: -4vh;
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(8rem, 20vw, 18rem);
+    font-weight: 700;
+    color: var(--ink-20);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .cover-divider {
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 1px;
+    background: var(--ink-20);
+  }
+
+  /* ===== SECTION BASE ===== */
+  section {
+    padding: 6rem 10vw;
+    border-bottom: 1px solid var(--ink-20);
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  /* ===== SECTION 1: BACKGROUND ===== */
+  .bg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .bg-card {
+    background: white;
+    border: 1px solid var(--ink-20);
+    border-radius: 2px;
+    padding: 1.8rem 2rem;
+    position: relative;
+  }
+
+  .bg-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    border-radius: 2px 0 0 2px;
+  }
+
+  .bg-card.c-red::before { background: var(--accent); }
+  .bg-card.c-gold::before { background: var(--gold); }
+  .bg-card.c-teal::before { background: var(--teal); }
+  .bg-card.c-blue::before { background: var(--blue); }
+
+  .bg-card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .bg-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .bg-card-body {
+    font-size: 17px;
+    color: var(--ink-60);
+    line-height: 1.75;
+  }
+
+  .challenge-box {
+    background: var(--accent-light);
+    border: 1px solid rgba(200,64,26,0.25);
+    border-radius: 2px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .challenge-box-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .challenge-box p {
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.75;
+  }
+
+  .challenge-box strong {
+    color: var(--accent);
+  }
+
+  /* ===== SECTION 2: PROCESS ===== */
+  .process-timeline {
+    position: relative;
+  }
+
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 40px;
+    bottom: 20px;
+    width: 1px;
+    background: var(--ink-20);
+  }
+
+  .process-step {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1;
+  }
+
+  .process-step.highlight .step-num {
+    background: var(--accent);
+  }
+
+  .step-body {
+    flex: 1;
+    padding-top: 8px;
+  }
+
+  .step-title {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .step-desc {
+    font-size: 17px;
+    color: var(--ink-60);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .step-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  .tag-tool {
+    background: var(--gold-light);
+    color: var(--gold);
+    border: 1px solid rgba(184,146,42,0.3);
+  }
+
+  .tag-action {
+    background: var(--blue-light);
+    color: var(--blue);
+    border: 1px solid rgba(26,63,107,0.2);
+  }
+
+  .tag-output {
+    background: var(--teal-light);
+    color: var(--teal);
+    border: 1px solid rgba(26,107,90,0.2);
+  }
+
+  /* Prompt block */
+  .prompt-block {
+    background: #1a1814;
+    border-radius: 4px;
+    padding: 1.2rem 1.4rem;
+    margin-top: 0.8rem;
+    position: relative;
+  }
+
+  .prompt-block-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 0.6rem;
+  }
+
+  .prompt-block-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+  }
+
+  .prompt-block-text .ph {
+    color: #e8a87c;
+  }
+
+  .prompt-block-text .kw {
+    color: #7ec8b0;
+  }
+
+  /* Notice card */
+  .notice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .notice-card {
+    background: white;
+    border: 1px solid var(--ink-20);
+    border-top: 3px solid var(--accent);
+    border-radius: 0 0 2px 2px;
+    padding: 1.4rem 1.5rem;
+  }
+
+  .notice-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink-20);
+    margin-bottom: 0.4rem;
+    line-height: 1;
+  }
+
+  .notice-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .notice-card-body {
+    font-size: 16px;
+    color: var(--ink-60);
+    line-height: 1.7;
+  }
+
+  /* ===== SECTION 3: VALUE ===== */
+  .value-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .value-card {
+    background: white;
+    border: 1px solid var(--ink-20);
+    border-radius: 2px;
+    padding: 2rem 1.8rem;
+    text-align: center;
+  }
+
+  .value-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .value-unit {
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  .value-label {
+    font-size: 16px;
+    color: var(--ink-60);
+    line-height: 1.6;
+  }
+
+  .value-divider {
+    height: 1px;
+    background: var(--ink-20);
+    margin: 0.8rem 0;
+    width: 24px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .replication-box {
+    background: white;
+    border: 1px solid var(--ink-20);
+    border-radius: 2px;
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+
+  .replication-box-left {
+    border-right: 1px solid var(--ink-20);
+    padding-right: 2rem;
+  }
+
+  .replication-box-left-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+
+  .replication-box-left-sub {
+    font-size: 16px;
+    color: var(--ink-60);
+    line-height: 1.7;
+  }
+
+  .replication-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .replication-list li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  .replication-list li::before {
+    content: '→';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ===== SECTION 4: CLOSING ===== */
+  #closing {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--ink);
+    color: var(--paper);
+    border-bottom: none;
+  }
+
+  #closing .section-label {
+    color: rgba(245,242,236,0.45);
+  }
+
+  #closing .section-title {
+    color: var(--paper);
+  }
+
+  .closing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .closing-card {
+    border: 1px solid rgba(245,242,236,0.15);
+    border-radius: 2px;
+    padding: 2rem;
+  }
+
+  .closing-card-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.45);
+    margin-bottom: 1rem;
+  }
+
+  .closing-card-body {
+    font-size: 17px;
+    color: rgba(245,242,236,0.85);
+    line-height: 1.8;
+  }
+
+  .closing-quote {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 600;
+    color: var(--paper);
+    line-height: 1.4;
+    margin-top: 2.5rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    section, #cover { padding: 4rem 6vw; }
+    .bg-grid, .notice-grid, .value-row, .closing-grid { grid-template-columns: 1fr; }
+    .replication-box { grid-template-columns: 1fr; }
+    .replication-box-left { border-right: none; border-bottom: 1px solid var(--ink-20); padding-right: 0; padding-bottom: 1.5rem; }
+    nav { display: none; }
+    .cover-bg-text { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav id="nav">
+  <a href="#cover" class="active">首页</a>
+  <a href="#background">背景</a>
+  <a href="#process">过程</a>
+  <a href="#value">价值</a>
+  <a href="#closing">结语</a>
+</nav>
+
+<!-- ===== COVER ===== -->
+<section id="cover" style="opacity:1;transform:none;border-bottom:none">
+  <div class="cover-rule"></div>
+  <p class="cover-eyebrow">集团月度同频会 · AI提效分享</p>
+  <h1 class="cover-title">
+    用 <em>AI</em> 做培训手册<br>是什么体验？
+  </h1>
+  <p class="cover-subtitle">
+    从0到1制作《购物中心AI工具培训手册·店总版》<br>的完整实践记录与方法论沉淀
+  </p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">分享时长</span>
+      <span class="cover-meta-value">约 15 分钟</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">核心工具</span>
+      <span class="cover-meta-value">飞书 + Claude</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">适用对象</span>
+      <span class="cover-meta-value">0 基础店总</span>
+    </div>
+  </div>
+  <div class="cover-bg-text">AI</div>
+  <div class="cover-divider"></div>
+</section>
+
+<!-- ===== WOW SECTION ===== -->
+<section id="wow" style="padding:5rem 10vw;background:var(--ink);border-bottom:none;opacity:1;transform:none">
+  <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,242,236,0.4);margin-bottom:1rem">成果预览 / Result</p>
+  <h2 style="font-family:'Noto Serif SC',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:var(--paper);margin-bottom:0.6rem;line-height:1.3">先看成果——<em style="color:var(--accent);font-style:normal">这就是用 AI 做出来的</em></h2>
+  <p style="font-size:14px;color:rgba(245,242,236,0.5);margin-bottom:2.5rem">点击下方卡片，直接打开《购物中心AI工具培训手册·店总版》</p>
+
+  <a href="https://suitorschaper-ux.github.io/ai-training-manual/AI%E5%9F%B9%E8%AE%AD%E6%89%8B%E5%86%8C_%E5%BA%97%E6%80%BB%E7%89%880327.html" target="_blank" style="display:block;text-decoration:none;position:relative;overflow:hidden;border-radius:6px;border:1px solid rgba(245,242,236,0.15);transition:border-color 0.25s,transform 0.25s" onmouseover="this.style.borderColor='rgba(200,64,26,0.7)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(245,242,236,0.15)';this.style.transform='translateY(0)'">
+
+    <div style="background:rgba(245,242,236,0.04);padding:2.5rem 2.8rem;display:flex;align-items:center;gap:2rem">
+      <div style="width:56px;height:56px;border-radius:50%;background:rgba(200,64,26,0.2);border:1px solid rgba(200,64,26,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="16" height="16" rx="2" stroke="#c8401a" stroke-width="1.5"/><path d="M7 8h8M7 11h8M7 14h5" stroke="#c8401a" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div style="flex:1">
+        <p style="font-size:16px;font-weight:500;color:rgba(245,242,236,0.95);margin-bottom:5px">购物中心 AI 工具培训手册｜店总版</p>
+        <p style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(245,242,236,0.35)">suitorschaper-ux.github.io · 在线网页 · 随时可访问</p>
+      </div>
+      <div style="flex-shrink:0;display:flex;align-items:center;gap:6px;background:var(--accent);color:white;font-size:13px;font-weight:500;padding:10px 20px;border-radius:4px">
+        立即查看
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <div style="background:rgba(245,242,236,0.03);border-top:1px solid rgba(245,242,236,0.08);padding:1.2rem 2.8rem;display:flex;gap:2.5rem">
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,242,236,0.3)">形式</span>
+        <span style="font-size:13px;color:rgba(245,242,236,0.7)">HTML 网页</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,242,236,0.3)">部署</span>
+        <span style="font-size:13px;color:rgba(245,242,236,0.7)">GitHub Pages</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,242,236,0.3)">制作工具</span>
+        <span style="font-size:13px;color:rgba(245,242,236,0.7)">飞书 + DeepSeek + Claude</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,242,236,0.3)">总耗时</span>
+        <span style="font-size:13px;color:rgba(245,242,236,0.7)">约 2 小时</span>
+      </div>
+    </div>
+
+  </a>
+
+  <p style="margin-top:1.5rem;font-size:13px;color:rgba(245,242,236,0.35);text-align:center">↓ 看完了？下面来说说这是怎么做到的</p>
+</section>
+
+<!-- ===== SECTION 1: BACKGROUND ===== -->
+<section id="background">
+  <p class="section-label">01 / Background</p>
+  <h2 class="section-title">为什么要做这件事？</h2>
+
+  <div class="bg-grid">
+    <div class="bg-card c-red">
+      <span class="bg-card-icon">📋</span>
+      <p class="bg-card-title">培训需求真实存在</p>
+      <p class="bg-card-body">集团店总群体AI能力接近0基础，但有强烈意愿。日常工作场景——数据分析、函件沟通、方案审核——都有AI切入空间，缺的是一套"拿来就用"的引导工具。</p>
+    </div>
+    <div class="bg-card c-gold">
+      <span class="bg-card-icon">🎯</span>
+      <p class="bg-card-title">传统培训材料痛点明显</p>
+      <p class="bg-card-body">PPT制作周期长、Word文档枯燥、内容更新成本高。店总们工作节奏快，需要一份"15分钟能上手、内容够具体、形式够专业"的培训材料。</p>
+    </div>
+    <div class="bg-card c-teal">
+      <span class="bg-card-icon">🏆</span>
+      <p class="bg-card-title">大区企划的示范带动职责</p>
+      <p class="bg-card-body">大区企划岗位天然承担着对门店的赋能责任——不只是自己用好AI，更要把方法论带下去、带得会。用AI做培训手册这件事本身，就是最直接的示范：工具怎么用，看我的。</p>
+    </div>
+    <div class="bg-card c-blue">
+      <span class="bg-card-icon">✨</span>
+      <p class="bg-card-title">HTML形式的战略选择</p>
+      <p class="bg-card-body">选择HTML而非Word/PPT，是有意为之。交互感强、视觉专业、无需软件即可打开，同时让店总们直观感受到AI能力的上限在哪里——这本身就是最好的说服。</p>
+    </div>
+  </div>
+
+  <div class="challenge-box">
+    <span class="challenge-box-icon">💡</span>
+    <p>核心命题：<strong>如何在最短时间内，用最低成本，制作出一份让0基础店总看完就能上手的AI培训手册？</strong>——答案是：用AI来做这件事本身。</p>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: PROCESS ===== -->
+<section id="process">
+  <p class="section-label">02 / Process</p>
+  <h2 class="section-title">具体是怎么做的？</h2>
+
+  <div class="process-timeline">
+
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <p class="step-title">在飞书建文档，搭框架</p>
+        <p class="step-desc">打开飞书新建文档，先不想细节，只写大纲：培训目标是什么、分几个模块、每个模块解决什么问题。这一步完全是自己的业务判断，AI不介入——因为只有你最清楚店总们的实际痛点在哪里。</p>
+        <div class="step-tag-row">
+          <span class="tag tag-tool">飞书文档</span>
+          <span class="tag tag-action">框架搭建</span>
+          <span class="tag tag-action">模块拆分</span>
+          <span class="tag tag-action">纯人工判断</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <p class="step-title">借助 AI 工具，在飞书文档填充细节内容</p>
+        <p class="step-desc">框架确认后，并不是纯靠人工逐字填写——而是借助 DeepSeek、豆包等 AI 工具来辅助扩充细节：把框架标题丢给 AI，让它帮你补充场景描述、生成示例数据、完善注意事项。人工负责判断"写得对不对"，AI负责"把字填满"。这份文档既是内容的母版，也是后续喂给 Claude 的原材料。</p>
+        <div class="step-tag-row">
+          <span class="tag tag-tool">飞书文档</span>
+          <span class="tag tag-tool">DeepSeek</span>
+          <span class="tag tag-tool">豆包</span>
+          <span class="tag tag-action">细节填充</span>
+          <span class="tag tag-action">场景扩写</span>
+          <span class="tag tag-output">结构化素材</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step highlight">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <p class="step-title">把文档内容喂给 Claude，生成 HTML</p>
+        <p class="step-desc">把飞书文档内容复制进Claude，并给出明确指令。第一版HTML通常已经有80%的完成度，视觉效果远超预期——这一步是整个流程最"哇"的时刻。</p>
+
+        <div class="prompt-block">
+          <p class="prompt-block-label">实际使用的 Prompt 结构</p>
+          <p class="prompt-block-text"><span class="kw">角色：</span>你是一位专业的前端设计师，擅长制作企业培训材料。<br><br><span class="kw">任务：</span>根据以下培训手册内容，生成一个完整的HTML文件。<br><span class="ph">[粘贴飞书文档全部内容]</span><br><br><span class="kw">要求：</span><br>① 视觉风格：专业、现代、适合企业内训<br>② 结构：按模块分章节，有清晰导航<br>③ 核心内容：每个场景要有完整的prompt示例<br>④ 格式：单个HTML文件，无需外部依赖</p>
+        </div>
+
+        <div class="step-tag-row" style="margin-top:1rem">
+          <span class="tag tag-tool">Claude</span>
+          <span class="tag tag-action">HTML生成</span>
+          <span class="tag tag-output">可交付成果</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step highlight">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <p class="step-title">多轮对话迭代，打磨细节</p>
+        <p class="step-desc">第一版生成后，不要关闭对话。在同一对话窗口里持续提出修改要求，AI会记住上下文，每次只需要说"改什么"，不需要重新描述整个文档。这是提效的关键。</p>
+
+        <div class="prompt-block">
+          <p class="prompt-block-label">迭代追问示例</p>
+          <p class="prompt-block-text"><span class="ph">"第三章的prompt示例太长，压缩到150字以内"</span><br><span class="ph">"给每个模块加一个预计学习时间的标签"</span><br><span class="ph">"配色换成更沉稳的深色系，更适合企业风格"</span><br><span class="ph">"在结尾加一个'本周就要用'的行动承诺区"</span></p>
+        </div>
+
+        <div class="step-tag-row" style="margin-top:1rem">
+          <span class="tag tag-tool">Claude</span>
+          <span class="tag tag-action">多轮迭代</span>
+          <span class="tag tag-action">细节优化</span>
+          <span class="tag tag-output">最终版本</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <p class="step-title">导出文件，部署到 GitHub，变成人人可访问的网页</p>
+        <p class="step-desc">将 Claude 生成的 HTML 代码保存为 `.html` 文件，上传到 GitHub 并开启 GitHub Pages，即可生成一个永久可访问的网页链接。把链接发到群里，店总们用手机扫一扫或点开链接，无需下载任何文件，随时随地浏览——这一步让培训手册从"一个文件"升级为"一个活的网页"。</p>
+
+        <div class="prompt-block">
+          <p class="prompt-block-label">部署流程（3步完成）</p>
+          <p class="prompt-block-text"><span class="kw">Step 1：</span>注册 GitHub 账号，新建一个仓库（Repository）<br><span class="kw">Step 2：</span>把 HTML 文件上传，文件名改为 <span class="ph">index.html</span><br><span class="kw">Step 3：</span>进入仓库 Settings → Pages → 选择 main 分支发布<br><br>完成后即获得形如 <span class="ph">yourname.github.io/手册名</span> 的永久链接</p>
+        </div>
+
+        <div class="step-tag-row" style="margin-top:1rem">
+          <span class="tag tag-tool">GitHub Pages</span>
+          <span class="tag tag-action">在线部署</span>
+          <span class="tag tag-action">链接分发</span>
+          <span class="tag tag-output">人人可浏览</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NOTICES -->
+  <p class="section-label" style="margin-top:3rem">使用注意事项</p>
+  <div class="notice-grid">
+    <div class="notice-card">
+      <p class="notice-card-num">01</p>
+      <p class="notice-card-title">素材质量决定输出质量</p>
+      <p class="notice-card-body">飞书文档写得越具体，AI生成的内容越准确。模糊的框架只会得到模糊的结果。"给店总做培训"比"数据分析培训，目标是让店总3分钟内用AI生成周报摘要"差很多。</p>
+    </div>
+    <div class="notice-card">
+      <p class="notice-card-num">02</p>
+      <p class="notice-card-title">不要关闭对话窗口</p>
+      <p class="notice-card-body">整个制作过程保持在同一个Claude对话里完成。关闭窗口重开，AI就失去了对上下文的记忆，修改时需要重新说明背景，效率大幅下降。</p>
+    </div>
+    <div class="notice-card">
+      <p class="notice-card-num">03</p>
+      <p class="notice-card-title">人工把关是必须的</p>
+      <p class="notice-card-body">AI生成的内容需要人工审核，尤其是数字、流程、品牌名称等。不要盲目信任第一版，读一遍，用自己的业务判断做最终校验。AI是助手，判断权在你。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: VALUE ===== -->
+<section id="value">
+  <p class="section-label">03 / Value</p>
+  <h2 class="section-title">这件事的成果与价值</h2>
+
+  <div class="value-row">
+    <div class="value-card">
+      <p class="value-num">2<span class="value-unit">小时</span></p>
+      <div class="value-divider"></div>
+      <p class="value-label">完成从0到可交付成果<br>传统制作需要1-2天</p>
+    </div>
+    <div class="value-card">
+      <p class="value-num">80<span class="value-unit">%</span></p>
+      <div class="value-divider"></div>
+      <p class="value-label">首次生成完成度<br>剩余20%通过对话迭代完成</p>
+    </div>
+    <div class="value-card">
+      <p class="value-num">0<span class="value-unit">元</span></p>
+      <div class="value-divider"></div>
+      <p class="value-label">无额外设计成本<br>无需外包设计师或购买模板</p>
+    </div>
+  </div>
+
+  <div class="replication-box">
+    <div class="replication-box-left">
+      <p class="replication-box-left-title">可复制的经验沉淀</p>
+      <p class="replication-box-left-sub">这套方法不只适用于培训手册，凡是"内容结构化 + 需要专业呈现"的场景，都可以复用这套飞书+Claude的工作流。</p>
+    </div>
+    <ul class="replication-list">
+      <li>店总月度经营汇报 → 飞书写数据要点 → Claude生成HTML可视化报告</li>
+      <li>新员工入职手册 → 飞书整理流程 → Claude生成交互式引导文档</li>
+      <li>商户节假日通知函 → 飞书列关键信息 → Claude生成规范函件</li>
+      <li>活动方案快速审核 → 上传PDF → Claude给出结构化审核意见</li>
+      <li>周数据经营简报 → 粘贴原始数据 → Claude生成亮点+风险+建议摘要</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== CLOSING ===== -->
+<section id="closing">
+  <p class="section-label">04 / Takeaway</p>
+  <h2 class="section-title">带走这三件事</h2>
+
+  <div class="closing-grid">
+    <div class="closing-card">
+      <p class="closing-card-title">方法论</p>
+      <p class="closing-card-body">飞书写结构（你的业务判断） → Claude生成内容（AI的执行力） → 人工校验（你的专业负责）。三步缺一不可，顺序不能颠倒。</p>
+    </div>
+    <div class="closing-card">
+      <p class="closing-card-title">核心心态</p>
+      <p class="closing-card-body">AI是助理，不是替代者。它能把你从"格式和排版"里解放出来，让你把时间花在"判断和决策"上。这才是生产力提升的本质。</p>
+    </div>
+    <div class="closing-card">
+      <p class="closing-card-title">今天可以做的一件事</p>
+      <p class="closing-card-body">打开Claude，把你明天要用到的一份文件——数据表、活动方案、函件草稿——粘贴进去，让AI给你一个初稿。就这一件事。</p>
+    </div>
+    <div class="closing-card">
+      <p class="closing-card-title">关于这份手册本身</p>
+      <p class="closing-card-body">你现在看到的这份HTML分享报告，就是用本文介绍的方法做出来的。所有的设计、排版、代码，均由Claude生成，总耗时不超过30分钟。</p>
+    </div>
+  </div>
+
+  <p class="closing-quote">
+    最好的AI培训，<br>是让学员看完就相信<br>「这件事我也能做到」。
+  </p>
+
+  <div style="margin-top:3rem;border-top:1px solid rgba(245,242,236,0.15);padding-top:2.5rem">
+    <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,242,236,0.45);margin-bottom:1.2rem">附录 / Appendix</p>
+    <a href="https://cz4de1b192.feishu.cn/wiki/AZbuwOCJ6iOcA7kW8TtczAfdnDc" target="_blank" style="display:inline-flex;align-items:center;gap:14px;background:rgba(245,242,236,0.06);border:1px solid rgba(245,242,236,0.18);border-radius:4px;padding:1.2rem 1.8rem;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(245,242,236,0.12)'" onmouseout="this.style.background='rgba(245,242,236,0.06)'">
+      <span style="width:36px;height:36px;background:rgba(200,64,26,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8h12M8 2l6 6-6 6" stroke="#c8401a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>
+        <span style="display:block;font-size:14px;font-weight:500;color:rgba(245,242,236,0.9);margin-bottom:3px">AI 工具 Claude 安装与使用指南</span>
+        <span style="display:block;font-family:'DM Mono',monospace;font-size:11px;color:rgba(245,242,236,0.4)">cz4de1b192.feishu.cn · 飞书文档</span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progress').style.width = progress + '%';
+  });
+
+  // Intersection Observer for section reveal
+  const sections = document.querySelectorAll('section:not(#cover):not(#closing)');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  sections.forEach(s => observer.observe(s));
+
+  // Closing section
+  const closingObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.05 });
+  const closing = document.getElementById('closing');
+  if (closing) closingObs.observe(closing);
+
+  // Active nav
+  const navLinks = document.querySelectorAll('nav a');
+  const allSections = document.querySelectorAll('section');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  allSections.forEach(s => navObserver.observe(s));
+</script>
+</body>
+</html>
